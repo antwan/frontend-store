@@ -1,9 +1,7 @@
 import React, { useState, useEffect, memo }  from 'react';
 import fetchProducts from './actions';
-import './App.scss';
 
-const Product = memo((props) => {
-    console.log(`Rerendered: ${props.title}`);
+export const Product = memo((props) => {
     return (
         <div>
             <img src={props.img} alt="" title={props.description} />
@@ -21,7 +19,7 @@ const Product = memo((props) => {
     );
 }, (prevProps, nextProps) => prevProps.liked === nextProps.liked);
 
-const LikedProduct = (props) => {
+export const LikedProduct = (props) => {
     return (
         <span>
             <button onClick={props.remove} className="cross" title="Dislike item"></button>
@@ -50,11 +48,12 @@ const ProductsList = (props) => {
 
     const productsCount = products.filter(item => (soldVisible || !item.sold)).length;
     const likedProducts = products.filter(item => item.liked);
+    const loading = !errorMsg && !products.length;
 
-    return (
-        <div>
+    return <>
+        {products.length ? <div>
             <header>
-                <div className="collapsible" tabindex="0">
+                <div className="collapsible" tabIndex="0">
                     <span>{likedProducts.length} likes</span>
                     <ul>
                         {likedProducts.map((item, i) => <li key={item.id}>
@@ -76,14 +75,15 @@ const ProductsList = (props) => {
                     </li>
                 )}
             </ul>
-            {errorMsg && <div className="error">{errorMsg}</div>}
-        </div>
-    )
+        </div> : null}
+        {errorMsg && <div className="error">{errorMsg}</div>}
+        {loading && <div className="loading">Loading...</div>}
+    </>
 }
 
 function App() {
   return (
-    <div className="App">
+    <div className="container">
         <ProductsList />
     </div>
   )

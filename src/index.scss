@@ -1,4 +1,18 @@
-.App {
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.container {
   margin: 0 auto;
   padding: 20px;
 }
@@ -27,6 +41,10 @@ li {
         }
     }
 
+    @media screen and (max-width: 500px) {
+        grid-template-columns: 1fr;
+    }
+
     .strong {
         font-weight: 800;
         font-size: 1.5em;
@@ -37,6 +55,12 @@ li {
         & .like.liked,
         &:hover .like {
             opacity: 1;
+        }
+        @media screen and (max-width: 500px) {
+            .like {
+                opacity: 1;
+                grid-template-columns: 1fr;
+            }
         }
     }
 }
@@ -55,6 +79,7 @@ li {
     z-index: 2;
     opacity: 0;
     transition: all 0.1s;
+
     &::after {
         position: absolute;
         content: "";
@@ -77,6 +102,7 @@ li {
     padding: 8px 20px;
     margin-bottom: 20px;
     border-radius: 5px;
+
     button {
         float: right;
     }
@@ -91,7 +117,7 @@ header {
     position:relative;
     text-align: right;
     display: inline-block;
-    min-width: 350px;
+    min-width: 250px;
 
     & > :last-child {
         position: absolute;
@@ -132,4 +158,15 @@ header {
         top: 0;
         height: 16px;
     }
+}
+
+.error {
+    text-align: center;
+    padding:20px;
+    border-radius: 20px;
+    background-color: rgba(255, 0, 0, 0.1);
+}
+.loading {
+    margin: 40px auto;
+    text-align: center;
 }
