@@ -1,4 +1,4 @@
-# Depop Shop frontend
+# Frontend store demo
 
 A simple mocked products API client written using React.
 This features consumption of the API, as well as possibilty to show/hide some products and like some others.
